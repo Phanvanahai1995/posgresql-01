@@ -71,12 +71,6 @@ GROUP BY phong.maphong,phong.loaiphong, phong.sokhactoida,phong.giaphong
 HAVING COUNT(*) >= 2;
 
 -- Câu 4
-SELECT tenkh
-FROM khach_hang
-WHERE tenkh ILIKE 'H%' OR tenkh ILIKE 'N%' OR tenkh ILIKE'M%'
-AND LENGTH(tenkh) <=20;
-
--- Câu 5
 SELECT (regexp_split_to_array(tenkh, E'\\s+'))[array_length(regexp_split_to_array(tenkh, E'\\s+'),1)] as ten_khach_hang
 FROM khach_hang
 WHERE (regexp_split_to_array(tenkh, E'\\s+'))[array_length(regexp_split_to_array(tenkh, E'\\s+'),1)] ILIKE 'n%' 
@@ -84,6 +78,11 @@ OR (regexp_split_to_array(tenkh, E'\\s+'))[array_length(regexp_split_to_array(te
 OR (regexp_split_to_array(tenkh, E'\\s+'))[array_length(regexp_split_to_array(tenkh, E'\\s+'),1)] ILIKE'm%'
 AND LENGTH((regexp_split_to_array(tenkh, E'\\s+'))[array_length(regexp_split_to_array(tenkh, E'\\s+'),1)]) <=20
 GROUP BY ten_khach_hang;
+
+-- Câu 5
+SELECT tenkh
+FROM khach_hang
+GROUP BY tenkh;
 
 -- Câu 6
 SELECT * FROM dich_vu_di_kem
